@@ -9,7 +9,7 @@ const {username, password} = req.body
   userExists(username)
     .then(exists => {
     if (exists) return res.status(400).send({message: "User exists"})
-      createUser({username, password})
+      createUser(username, password)
         .then(() => next())
     })
     .catch(err => res.status(500).send({message: err.message}))
