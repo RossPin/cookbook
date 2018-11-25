@@ -1,31 +1,30 @@
-var mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost:27017/survey", { useNewUrlParser: true })
 var hash = require('../auth/hash')
+const db = require('./connection')
 
-var userSchema = new mongoose.Schema({ username: String, hash: String})
-var User = mongoose.model('User', userSchema)
-
-function createUser(user) {
+function createUser (user_name, display_name, img, password) {
   return new Promise ((resolve, reject) => {
-    hash.generate(user.password, (err, hash) => {
+    hash.generate(password, (err, hash) => {
+      console.log({err, hash});
       if (err) reject(err)
-      var userData = new User({username: user.username.toLowerCase(), hash})  
-      userData.save()
-        .then(newUser => {         
-          resolve(newUser)
-        })     
+      db.insert([{user_name: user_name.toLowerCase(), display_name: display_name, img: img, hash}], 'id')
+        .into('users')
+        .then(user_id => resolve(user_id))
     })
 
   })
-  
 }
 
-function getUserByName(username) {
-  return User.find({username}).then(users => users[0])
+function userExists (user_name) {
+  return db('users')
+    .where('user_name', user_name.toLowerCase())
+    .first()
+    .then(user => !!user)
 }
 
-function userExists(username) {
-  return User.find({username}).then(users => users.length > 0)
+function getUserByName (user_name) {
+  return db('users')
+    .where('user_name', user_name.toLowerCase())
+    .first()
 }
 
 module.exports = {
