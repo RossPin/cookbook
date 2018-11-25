@@ -6,7 +6,7 @@ function createUser (user_name, password) {
     hash.generate(password, (err, hash) => {
       console.log({err, hash});
       if (err) reject(err)
-      db.insert([{user_name: user_name.toLowerCase(), display_name: display_name, img: img, hash}], 'id')
+      db.insert([{user_name: user_name.toLowerCase(), hash}], 'id')
         .into('users')
         .then(user_id => resolve(user_id))
     })
