@@ -4,6 +4,7 @@ import Nav from './Nav'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import RecipeList from './RecipeList'
+import Recipe from './Recipe'
 
 class App extends React.Component{
   render(){
@@ -15,6 +16,7 @@ class App extends React.Component{
               <Route path="/login" component={Login} />
               <Route path="/Register" component={Register} />
               <Route exact path="/recipes" component={RecipeList} />
+              <Route path="/recipes/:id" component={Recipe} />
           </div>
         </div>
       </HashRouter>   
