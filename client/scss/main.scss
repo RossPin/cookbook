@@ -34,9 +34,15 @@ body {
 }
 
 .recipeTile {
+  float: left;
   width: 20%;
+  height: 300px;
+  overflow: hidden;
   margin: 2.5%;
   img {
     width: 100%;
+    
   }
 }
+
+
