@@ -22,12 +22,12 @@ class RecipeList extends React.Component {
     return (
       <div className='recipeList'>
         {this.state.recipes.map(recipe => (
-          <Link key={recipe.id} to={`recipes/${recipe.id}`}>
-          <div className='recipeTile'>
-            <h2>{recipe.title}</h2>
-            <img src={`Images/${recipe.img}`} />
+          <div key={recipe.id} className='recipeTile'>
+            <Link  to={`recipes/${recipe.id}`}>
+              <h2>{recipe.title}</h2>
+              <img src={`Images/${recipe.img}`} />
+            </Link>
           </div>
-          </Link>
         ))}
       </div>
     )
