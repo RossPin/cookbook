@@ -29,10 +29,15 @@ class Recipe extends React.Component {
       <div className='recipe'>        
             <h2>{title}</h2>
             {img && <img src={`Images/${img}`} />}
+            <h4>{`${servings} serving${servings > 1 ? 's' : ''}`}</h4>
             <div>
               <h4>Ingredients</h4>
               <ul>
-                {ingredients.map(ingredient => <li key={ingredient.product_id}>{`${ingredient.qty*servings} ${ingredient.unit} - ${ingredient.name}`}</li>)}
+                {ingredients.map(ingredient => 
+                  <li key={ingredient.product_id}>
+                    {`${ingredient.qty*servings}${ingredient.unit === 'num' ? '' : ingredient.unit} - ${ingredient.name}${ingredient.unit === 'num' ? 's' : ''}`}
+                  </li>
+                  )}
               </ul>
             </div>
             <div>
