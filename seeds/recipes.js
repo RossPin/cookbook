@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('recipes').insert([
-        {id: 1, title: 'Garlic chicken drums'}
+        {id: 1, title: 'Garlic chicken drums', img: 'GarlicChickenDrums.jpeg'}
       ]);
     });
 };
