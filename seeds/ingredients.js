@@ -12,7 +12,8 @@ exports.seed = function(knex, Promise) {
         {recipe_id: 1, product_id: 5, qty: 7.5, unit: 'ml'},
         {recipe_id: 1, product_id: 6, qty: 7.5, unit: 'ml'},
         {recipe_id: 1, product_id: 7, qty: 7.5, unit: 'ml'},
-        {recipe_id: 1, product_id: 8, qty: 7.5, unit: 'ml'}
+        {recipe_id: 1, product_id: 8, qty: 7.5, unit: 'ml'},
+        {recipe_id: 2, product_id: 9, qty: 2, unit: 'num'}
       ]);
     });
 };
