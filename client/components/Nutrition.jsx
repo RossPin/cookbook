@@ -10,7 +10,7 @@ class Nutrition extends React.Component {
     const sum = this.props.ingredients.reduce((acc, ingredient) => {
       let val = ingredient[property]*ingredient.qty/100
       if (ingredient.unit === 'ml') val *= ingredient.density
-      else if (ingredient.unit === 'num') val *= avg_weight
+      else if (ingredient.unit === 'num') val *= ingredient.avg_weight
       return acc + val
     },0)
     return Math.round(sum*10)/10
