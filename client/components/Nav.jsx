@@ -12,18 +12,20 @@ function Nav(props) {
       <div className="navbar-start">
         <h1>React App</h1>
         <div className="navbar-end">
-          <span>{props.auth.user.username} </span>
+          {/* <span>{props.auth.user.username} </span>
           <Link className='button' to="/">Home</Link>
-          <button className='button' onClick={() => props.dispatch(logoutUser())}>Logout</button>
+          <button className='button' onClick={() => props.dispatch(logoutUser())}>Logout</button> */}
+          <Link className='button' to="/recipes">Recipes</Link>
         </div>
       </div>
       : //display if not logged in
       <div className="navbar-start">
         <h1>React App</h1>
         <div className="navbar-end">
-          <Link className='button' to="/login">Login</Link>
+          {/* <Link className='button' to="/login">Login</Link>
           <Link className='button' to="/">Home</Link>
-          <Link className='button' to="/register">Register</Link>
+          <Link className='button' to="/register">Register</Link> */}
+          <Link className='button' to="/recipes">Recipes</Link>
         </div>
       </div>     
     }
