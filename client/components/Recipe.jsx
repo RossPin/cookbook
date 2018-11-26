@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import request from '../utils/api'
+import Nutrition from './Nutrition'
 
 class Recipe extends React.Component {
   constructor(props){
@@ -38,9 +38,8 @@ class Recipe extends React.Component {
             <div>
               <h4>Directions</h4>              
                 {steps.map(step => <p key={step.number}>{`${step.number}. ${step.text}`}</p>)}
-            </div>
-            
-          
+            </div>            
+            <Nutrition ingredients={ingredients}/>          
       </div>
     )
   }
