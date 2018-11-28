@@ -22,9 +22,15 @@ function getSteps (recipe_id) {
     .where('recipe_id', recipe_id)
 }
 
+function addProduct (product) {
+  return db('products')
+    .insert(product)
+}
+
 module.exports = {
   getRecipes,
   getRecipe,
   getIngredients,
-  getSteps
+  getSteps,
+  addProduct
 }
