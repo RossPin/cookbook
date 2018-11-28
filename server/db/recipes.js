@@ -10,6 +10,12 @@ function getRecipe (id) {
   .first()
 }
 
+function addRecipe(recipe) {
+  return db('recipes')
+    .insert(recipe)
+    .then(ids => ids[0])
+}
+
 function getIngredients (recipe_id) {
   return db('ingredients')
     .where('recipe_id', recipe_id)  
@@ -17,9 +23,19 @@ function getIngredients (recipe_id) {
     .select('product_id', 'name', 'qty', 'unit', 'cal', 'fat', 'sat_fat', 'protien', 'carb', 'sugar', 'avg_weight', 'density')    
 }
 
+function addIngredients(ingredients) {
+  return db('ingredients')
+    .insert(ingredients)
+}
+
 function getSteps (recipe_id) {
   return db('steps')
     .where('recipe_id', recipe_id)
+}
+
+function addSteps(steps) {
+  return db('steps')
+    .insert(steps)
 }
 
 function addProduct (product) {
@@ -38,5 +54,8 @@ module.exports = {
   getIngredients,
   getSteps,
   addProduct,
-  getProducts
+  getProducts,
+  addRecipe,
+  addIngredients,
+  addSteps
 }
