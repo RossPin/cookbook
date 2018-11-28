@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {getRecipes, getRecipe, getIngredients, getSteps} = require('../db/recipes')
+const {getRecipes, getRecipe, getIngredients, getSteps, addProduct, getProducts} = require('../db/recipes')
 
 router.get('/', (req, res) => {
   getRecipes().then(recipes => {
@@ -20,10 +20,16 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.post('/addProduct', (req,res) => {
+router.post('/product', (req,res) => {
   const product = req.body
   addProduct(product).then(id => {
     res.json({message: 'product added', id})
+  })
+})
+
+router.get('products', (req, res) => {
+  getProducts().then(products => {
+    res.json(products)
   })
 })
 
