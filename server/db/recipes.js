@@ -25,6 +25,7 @@ function getSteps (recipe_id) {
 function addProduct (product) {
   return db('products')
     .insert(product)
+    .then(ids => ids[0])
 }
 
 module.exports = {
