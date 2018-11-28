@@ -18,7 +18,13 @@ router.get('/:id', (req, res) => {
       })
     })
   })
+})
 
+router.post('/addProduct', (req,res) => {
+  const product = req.body
+  addProduct(product).then(id => {
+    res.json({message: 'product added', id})
+  })
 })
 
 module.exports = router
