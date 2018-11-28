@@ -28,10 +28,15 @@ function addProduct (product) {
     .then(ids => ids[0])
 }
 
+function getProducts() {
+  return db('products')
+}
+
 module.exports = {
   getRecipes,
   getRecipe,
   getIngredients,
   getSteps,
-  addProduct
+  addProduct,
+  getProducts
 }
