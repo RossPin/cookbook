@@ -1,18 +1,19 @@
 const router = require('express').Router()
-const {getRecipes, getRecipe, getIngredients, getSteps, addProduct, getProducts} = require('../db/recipes')
+const db = require('../db/recipes')
+const token = require('../auth/token')
 
 router.get('/', (req, res) => {
-  getRecipes().then(recipes => {
+  db.getRecipes().then(recipes => {
     res.json(recipes)
   })
 })
 
 router.get('/:id', (req, res) => {
   const recipe_id = req.params.id
-  getRecipe(recipe_id).then(recipe => {
-    getIngredients(recipe_id).then(ingredients => {
+  db.getRecipe(recipe_id).then(recipe => {
+    db.getIngredients(recipe_id).then(ingredients => {
       recipe.ingredients = ingredients
-      getSteps(recipe_id).then(steps => {
+      db.getSteps(recipe_id).then(steps => {
         recipe.steps = steps
         res.json(recipe)
       })
@@ -20,16 +21,33 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.post('/product', (req,res) => {
+router.post('/product', token.decode, (req,res) => {
   const product = req.body
-  addProduct(product).then(id => {
+  db.addProduct(product).then(id => {
     res.json({message: 'product added', id})
   })
 })
 
-router.get('products', (req, res) => {
-  getProducts().then(products => {
+router.get('/products', (req, res) => {
+  db.getProducts().then(products => {
     res.json(products)
+  })
+})
+
+router.post('/new', token.decode, (req,res) => {
+  const {title, ingredients, steps} = req.body
+  db.addRecipe(title).then(id => {
+    ingredients.forEach(element => {
+      element.recipe_id = id
+    })
+    db.addIngredients(ingredients).then(() => {
+      steps.forEach(element => {
+        element.recipe_id = id
+      })
+      db.addSteps(steps).then(() => {
+        res.json({message: 'recipe added', id})
+      })
+    })
   })
 })
 
