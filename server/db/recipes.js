@@ -44,6 +44,18 @@ function addProduct (product) {
     .then(ids => ids[0])
 }
 
+function updateProduct (id, product) {
+  return db('products')
+    .where('id', id)
+    .update(product)
+}
+
+function getProduct (id) {
+  return db('products')
+  .where('id', id)
+  .first()
+}
+
 function getProducts() {
   return db('products')
 }
@@ -57,5 +69,7 @@ module.exports = {
   getProducts,
   addRecipe,
   addIngredients,
-  addSteps
+  addSteps,
+  updateProduct,
+  getProduct
 }
