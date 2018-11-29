@@ -19,6 +19,7 @@ class App extends React.Component{
               <Route exact path="/recipes" component={RecipeList} />
               <Route path="/recipes/:id" component={Recipe} />
               <Route path="/new/product" component={ProductAdd} />
+              <Route path="/edit/product/:id" component={ProductAdd} />
           </div>
         </div>
       </HashRouter>   
