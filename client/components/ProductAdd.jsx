@@ -26,7 +26,10 @@ class ProductAdd extends React.Component{
   }
 
   update(e){
-
+    e.preventDefault
+    const state = this.state
+    state[e.target.name] = e.target.value
+    this.setState(state)
   }
 
   post(){
@@ -38,9 +41,28 @@ class ProductAdd extends React.Component{
       <div>
         <form submit={this.post}>
           <label htmlFor="group">Group</label><br/>
-          <select name="group" id="group">            
+          <select onchange={this.update} name="group" id="group">            
             {groupOptions.map((group, i) => <option value={group} selected={this.state.group === group}>{group}</option>)}
-          </select>
+          </select><br/>
+          <label htmlFor="name"></label><br/>
+          <input type="text" name="name" id="name" onchange={this.update}/><br/>
+          <label htmlFor="cal"></label><br/>
+          <input type="text" name="cal" id="cal" onchange={this.update}/><br/>
+          <label htmlFor="fat"></label><br/>
+          <input type="text" name="fat" id="fat" onchange={this.update}/><br/>
+          <label htmlFor="sat_fat"></label><br/>
+          <input type="text" name="sat_fat" id="sat_fat" onchange={this.update}/><br/>
+          <label htmlFor="protien"></label><br/>
+          <input type="text" name="protien" id="protien" onchange={this.update}/><br/>
+          <label htmlFor="carb"></label><br/>
+          <input type="text" name="carb" id="carb" onchange={this.update}/><br/>
+          <label htmlFor="sugar"></label><br/>
+          <input type="text" name="sugar" id="sugar" onchange={this.update}/><br/>
+          <label htmlFor="avg_weight"></label><br/>
+          <input type="text" name="avg-weight" id="avg-weight" onchange={this.update}/><br/>
+          <label htmlFor="density"></label><br/>
+          <input type="text" name="density" id="density" onchange={this.update}/><br/>
+          <input type="submit" value="Add Product"/>
         </form>
       </div>
     )
