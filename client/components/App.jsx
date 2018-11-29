@@ -5,6 +5,7 @@ import Login from './Auth/Login'
 import Register from './Auth/Register'
 import RecipeList from './RecipeList'
 import Recipe from './Recipe'
+import ProductAdd from './ProductAdd';
 
 class App extends React.Component{
   render(){
@@ -17,6 +18,7 @@ class App extends React.Component{
               <Route path="/Register" component={Register} />
               <Route exact path="/recipes" component={RecipeList} />
               <Route path="/recipes/:id" component={Recipe} />
+              <Route path="/new/product" component={ProductAdd} />
           </div>
         </div>
       </HashRouter>   
