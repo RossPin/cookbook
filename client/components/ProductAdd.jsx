@@ -14,7 +14,7 @@ class ProductAdd extends React.Component{
     super(props)
     this.state = {
       name: '',
-      group: 'Meat and Eggs',
+      group: groupOptions[0],
       cal: '',
       fat: '',
       sat_fat: '',
@@ -38,7 +38,7 @@ class ProductAdd extends React.Component{
   post(e){
     e.preventDefault
     const state = this.state
-    state.keys.forEach(key => {
+    Object.keys(state).forEach(key => {
       if (key !== 'name' && key !== 'group') state[key] = Number(state[key])
     })
     console.log(state)
