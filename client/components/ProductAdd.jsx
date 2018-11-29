@@ -1,4 +1,5 @@
 import React from 'react'
+import request from '../utils/api'
 
 const groupOptions = [
   'Meat and Eggs',
@@ -32,8 +33,15 @@ class ProductAdd extends React.Component{
     this.setState(state)
   }
 
-  post(){
-
+  post(e){
+    e.preventDefault
+    const state = this.state
+    state.keys.forEach(key => {
+      if (key !== 'name' && key !== 'group') state[key] = Number(state[key])
+    })
+    request('post', 'recipes/product', state).then(res => {
+      console.log(res.body)      
+    })
   }
 
   render(){
