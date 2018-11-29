@@ -55,12 +55,11 @@ class ProductAdd extends React.Component{
         if (state[key] === '') state[key] = null
         else state[key] = Number(state[key])}
     })
-    console.log(state)
     if (id) request('put', `recipes/product/${id}`, state).then(res => {
-      console.log(res.body)      
+      console.log(res.body.message)      
     })
     else request('post', 'recipes/product', state).then(res => {
-      console.log(res.body)      
+      console.log(res.body.message)      
     })
   }
 
@@ -87,7 +86,7 @@ class ProductAdd extends React.Component{
           <label htmlFor="sugar">Sugar per 100g</label><br/>
           <input type="text" name="sugar" id="sugar" onChange={this.update} value={this.state.sugar}/><br/>
           <label htmlFor="avg_weight">Average Weight if itemised</label><br/>
-          <input type="text" name="avg-weight" id="avg-weight" onChange={this.update} value={this.state.avg_weight}/><br/>
+          <input type="text" name="avg_weight" id="avg_weight" onChange={this.update} value={this.state.avg_weight}/><br/>
           <label htmlFor="density">Density</label><br/>
           <input type="text" name="density" id="density" onChange={this.update} value={this.state.density}/><br/>
           <input type="submit" value="Add Product"/>
