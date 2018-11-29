@@ -29,14 +29,14 @@ class ProductAdd extends React.Component{
   }
 
   update(e){
-    e.preventDefault
+    e.preventDefault()
     const state = this.state
     state[e.target.name] = e.target.value
     this.setState(state)
   }
 
   post(e){
-    e.preventDefault
+    e.preventDefault()
     const state = this.state
     Object.keys(state).forEach(key => {
       if (key !== 'name' && key !== 'group') state[key] = Number(state[key])
