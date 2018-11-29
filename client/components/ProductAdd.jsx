@@ -28,6 +28,15 @@ class ProductAdd extends React.Component{
     this.post = this.post.bind(this)
   }
 
+  componentDidMount(){
+    !this.props.auth.isAuthenticated && this.props.history.push('/')    
+    const id = this.props.match.params.id
+    id && request('post', `recipes/product/${id}`).then(res => {
+      const {name, group, cal, fat, sat_fat, protien, carb, sugar, avg_weight, density} = res.body
+      this.setState({name, group, cal, fat, sat_fat, protien, carb, sugar, avg_weight, density})
+    })
+  }
+
   update(e){
     e.preventDefault()
     const state = this.state
@@ -37,12 +46,16 @@ class ProductAdd extends React.Component{
 
   post(e){
     e.preventDefault()
+    const id = this.props.match.params.id
     const state = this.state
     Object.keys(state).forEach(key => {
       if (key !== 'name' && key !== 'group') state[key] = Number(state[key])
     })
     console.log(state)
-    request('post', 'recipes/product', state).then(res => {
+    if (id) request('put', `recipes/product/${id}`, state).then(res => {
+      console.log(res.body)      
+    })
+    else request('post', 'recipes/product', state).then(res => {
       console.log(res.body)      
     })
   }
