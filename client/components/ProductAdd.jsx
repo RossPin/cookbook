@@ -39,6 +39,7 @@ class ProductAdd extends React.Component{
     state.keys.forEach(key => {
       if (key !== 'name' && key !== 'group') state[key] = Number(state[key])
     })
+    console.log(state)
     request('post', 'recipes/product', state).then(res => {
       console.log(res.body)      
     })
@@ -49,8 +50,8 @@ class ProductAdd extends React.Component{
       <div>
         <form onSubmit={this.post}>
           <label htmlFor="group">Group</label><br/>
-          <select onchange={this.update} name="group" id="group">            
-            {groupOptions.map((group, i) => <option value={group} selected={this.state.group === group}>{group}</option>)}
+          <select onChange={this.update} name="group" id="group">            
+            {groupOptions.map((group, i) => <option value={group}>{group}</option>)}
           </select><br/>
           <label htmlFor="name">Product name</label><br/>
           <input type="text" name="name" id="name" onChange={this.update}/><br/>
