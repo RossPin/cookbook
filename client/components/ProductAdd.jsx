@@ -51,7 +51,7 @@ class ProductAdd extends React.Component{
         <form onSubmit={this.post}>
           <label htmlFor="group">Group</label><br/>
           <select onChange={this.update} name="group" id="group">            
-            {groupOptions.map((group, i) => <option value={group}>{group}</option>)}
+            {groupOptions.map((group, i) => <option key={i} value={group}>{group}</option>)}
           </select><br/>
           <label htmlFor="name">Product name</label><br/>
           <input type="text" name="name" id="name" onChange={this.update}/><br/>
