@@ -2,7 +2,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('products', (table) => {
     table.increments('id')
-    table.string('name')    
+    table.string('name')
+    tabel.string('group')   
     table.float('cal')
     table.float('fat')
     table.float('sat_fat')
