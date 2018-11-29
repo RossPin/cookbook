@@ -24,6 +24,8 @@ class ProductAdd extends React.Component{
       avg_weight: '',
       density: '',
     }
+    this.update = this.update.bind(this)
+    this.post = this.post.bind(this)
   }
 
   update(e){
