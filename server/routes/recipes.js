@@ -28,9 +28,24 @@ router.post('/product', token.decode, (req,res) => {
   })
 })
 
+router.put('/product/:id', token.decode, (req,res) => {
+  const product = req.body
+  const id = req.params.id
+  db.updateProduct(id, product).then(() => {
+    res.json({message: 'product updated', id})
+  })
+})
+
 router.get('/products', (req, res) => {
   db.getProducts().then(products => {
     res.json(products)
+  })
+})
+
+router.get('/product/:id', (req, res) => {
+  const id = req.params.id
+  db.getProduct(id).then(product => {
+    res.json(product)
   })
 })
 
